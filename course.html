@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Content - Digital Learning Nabha</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">Digital Learning Nabha</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="signin.html">Sign In</a>
+      <a href="create-profile.html">Create Profile</a>
+    </nav>
+  </header>
+
+  <!-- Course Content Section -->
+  <section class="hero" style="padding: 50px 20px;">
+    <div id="courseContent" style="max-width: 1200px; margin: 0 auto;">
+      <!-- Course content will be loaded here by JavaScript -->
+      <div style="text-align: center; padding: 100px;">
+        <h2>Loading course content...</h2>
+        <p>Please wait while we prepare your learning materials.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <p>&copy; 2025 Digital Learning Nabha. All Rights Reserved.</p>
+    <p>Contact: info@nabhalearning.org</p>
+  </footer>
+
+  <script>
+    // Get course from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const course = urlParams.get('course');
+
+    // Course content data
+    const courseContent = {
+      math: {
+        title: 'Mathematics Course',
+        notes: `
+          <h3>Maths Basics for Rural Students</h3>
+          <div class="math-notes-section">
+            <h4>1. Numbers & Counting</h4>
+            <p>Learn numbers 1 to 100.</p>
+            <p>Practice counting using:</p>
+            <ul>
+              <li>Seeds, grains, or stones.</li>
+              <li>Animals (cows, goats, chickens).</li>
+              <li>Household objects (pots, spoons, etc.).</li>
+            </ul>
+            <p><strong>Example:</strong><br>If you have 5 cows and your neighbour has 3,<br>Total cows = 5 + 3 = 8.</p>
+          </div>
+          <div class="math-notes-section">
+            <h4>2. Addition (+) and Subtraction (−)</h4>
+            <p>Use simple real-life examples:</p>
+            <ul>
+              <li>Money transactions (buying vegetables, selling milk).</li>
+              <li>Counting fruits or vegetables.</li>
+            </ul>
+            <p><strong>Example:</strong><br>You had ₹50, you spent ₹20.<br>Remaining = 50 − 20 = ₹30.</p>
+          </div>
+          <div class="math-notes-section">
+            <h4>3. Multiplication (×)</h4>
+            <p>Introduce as repeated addition.</p>
+            <p><strong>Example:</strong><br>1 mango costs ₹5.<br>If you buy 4 mangoes:<br>₹5 × 4 = ₹20.</p>
+          </div>
+          <div class="math-notes-section">
+            <h4>4. Division (÷)</h4>
+            <p>Use sharing examples.</p>
+            <p><strong>Example:</strong><br>12 sweets shared among 4 kids:<br>12 ÷ 4 = 3 sweets each.</p>
+          </div>
+          <div class="math-notes-section">
+            <h4>5. Shapes (Geometry Basics)</h4>
+            <p>Identify shapes around them:</p>
+            <ul>
+              <li>Circle: a plate, sun.</li>
+              <li>Square: tiles, fields.</li>
+              <li>Rectangle: door, books.</li>
+              <li>Triangle: roof.</li>
+            </ul>
+          </div>
+          <div class="math-notes-section">
+            <h4>6. Measurement Basics</h4>
+            <p>Length: Use hand spans, footsteps, measuring tapes.</p>
+            <p>Weight: Use traditional scales, kilos.</p>
+            <p>Volume: Litres (milk, water).</p>
+          </div>
+          <div class="math-notes-section">
+            <h4>7. Money & Simple Math</h4>
+            <p>Recognize coins and notes.</p>
+            <p>Add/subtract money.</p>
+            <p>Learn to calculate simple totals.</p>
+          </div>
+          <div class="math-notes-section">
+            <h4>8. Time & Calendar</h4>
+            <p>Learn reading the clock.</p>
+            <p>Days, weeks, months, seasons.</p>
+            <p>Sunrise/sunset timing for daily planning.</p>
+          </div>
+          <div class="math-notes-section">
+            <h4>9. Practical Fractions</h4>
+            <p>Introduce halves and quarters using roti or chapati.</p>
+            <p><strong>Example:</strong><br>Cut 1 roti into 2 pieces = ½ each.<br>Cut into 4 pieces = ¼ each.</p>
+          </div>
+          <div class="math-notes-section">
+            <h4>10. Daily Life Math</h4>
+            <p>Count seeds while planting.</p>
+            <p>Calculate cost of groceries.</p>
+            <p>Understand bus ticket fares and distance.</p>
+          </div>
+        `,
+        videos: `
+          <h3>YouTube Videos for Maths Basics</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 40px;">
+            <div class="video-thumbnail" data-video-id="k6U-i4gXkLM">
+              <img src="https://img.youtube.com/vi/k6U-i4gXkLM/hqdefault.jpg" alt="Numbers & Counting">
+              <h4>Numbers & Counting</h4>
+            </div>
+            <div class="video-thumbnail" data-video-id="VfV6v6v7xk">
+              <img src="https://img.youtube.com/vi/VfV6v6v7xk/hqdefault.jpg" alt="Addition & Subtraction">
+              <h4>Addition & Subtraction</h4>
+            </div>
+            <div class="video-thumbnail" data-video-id="M7lc1UVf-VE">
+              <img src="https://img.youtube.com/vi/M7lc1UVf-VE/hqdefault.jpg" alt="YouTube API Demo">
+              <h4>YouTube API Demo</h4>
+            </div>
+            <div class="video-thumbnail" data-video-id="3Xc3CA655Yw">
+              <img src="https://img.youtube.com/vi/3Xc3CA655Yw/hqdefault.jpg" alt="Test Video">
+              <h4>Test Video</h4>
+            </div>
+          </div>
+          <div id="videoPlayerSection" style="display:none; text-align:center; margin-top: 20px;">
+            <iframe id="videoPlayer" width="640" height="360" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <div style="margin-top: 20px;">
+              <button id="backToThumbnailsBtn" class="btn outline">Back to Videos</button>
+            </div>
+          </div>
+        `
+      },
+      science: {
+        title: 'Science Course',
+        notes: `
+          <h3>🔍 What is Science?</h3>
+          <p>Science is learning about the world around us – how things work, why they happen, and how we can use that knowledge in daily life.</p>
+          <h3>🧠 Key Science Concepts</h3>
+          <ol>
+            <li>Matter – Everything is made of matter (solid, liquid, gas).</li>
+            <li>Force & Motion – Push or pull makes objects move or stop.</li>
+            <li>Energy – Needed for all activities (sun, food, fuel give energy).</li>
+            <li>Water Cycle – Water evaporates, forms clouds, and falls as rain.</li>
+            <li>Photosynthesis – Plants make their own food using sunlight.</li>
+            <li>Human Body Systems – Breathing, digestion, blood circulation keep us alive.</li>
+            <li>Environment – Clean air, water, and trees are needed for life.</li>
+          </ol>
+          <h3>Physics Basics</h3>
+          <p>Physics is the study of matter, energy, and their interactions. It explains how things move, why they move, and how forces work in nature.</p>
+          <h4>Main Branches of Physics</h4>
+          <ol>
+            <li>Mechanics – Study of motion, forces, and energy.</li>
+            <li>Optics – Study of light and vision.</li>
+            <li>Electricity & Magnetism – Study of electric charges, current, and magnets.</li>
+            <li>Thermodynamics – Study of heat and temperature.</li>
+            <li>Sound (Acoustics) – Study of sound waves.</li>
+            <li>Modern Physics – Study of atoms, particles, and the universe.</li>
+          </ol>
+          <h4>Important Concepts</h4>
+          <table style="width: 100%; border-collapse: collapse; color: #333;">
+            <thead>
+              <tr style="background-color: #1b5e20; color: white;">
+                <th style="border: 1px solid #ddd; padding: 8px;">Concept</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Explanation</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Matter</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Anything that has mass and takes up space.</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Water, air, rocks.</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Force</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">A push or pull on an object.</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Pushing a ball.</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Motion</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Change of position of an object.</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">A car moving on the road.</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Speed</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">How fast something moves.</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Car speed = distance/time.</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Gravity</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">A force that pulls objects toward Earth.</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Apple falling from a tree.</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Work</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Done when a force moves an object.</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Lifting a box.</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Energy</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Ability to do work.</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Heat, light, sound energy.</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Friction</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Force that slows things down.</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Rubbing hands together.</td>
+              </tr>
+            </tbody>
+          </table>
+          <h4>Simple Physics Formulas</h4>
+          <ol>
+            <li>Speed = Distance ÷ Time</li>
+            <li>Force = Mass × Acceleration (Newton's 2nd Law)</li>
+            <li>Work = Force × Distance</li>
+            <li>Power = Work ÷ Time</li>
+            <li>Density = Mass ÷ Volume</li>
+          </ol>
+          <h4>Fun Examples in Real Life</h4>
+          <ul>
+            <li>A seesaw shows balance of forces.</li>
+            <li>A rainbow shows light refraction.</li>
+            <li>A fan works due to electric energy changing to motion.</li>
+            <li>A boat floats due to buoyancy.</li>
+          </ul>
+          <hr style="border: 1px solid #1b5e20; margin: 30px 0;">
+          <h3>Chemistry Basics</h3>
+          <p>Chemistry is the science of matter – it studies what things are made of, how they change, and how they interact with each other.</p>
+          <h4>Main Branches of Chemistry</h4>
+          <ol>
+            <li>Organic Chemistry – Study of carbon compounds (e.g., fuels, medicines).</li>
+            <li>Inorganic Chemistry – Study of non-carbon substances (e.g., metals, minerals).</li>
+            <li>Physical Chemistry – How energy and matter interact.</li>
+            <li>Analytical Chemistry – How to test and identify substances.</li>
+            <li>Biochemistry – Chemistry of living things.</li>
+          </ol>
+          <h4>Important Chemistry Concepts</h4>
+          <table style="width: 100%; border-collapse: collapse; color: #333;">
+            <thead>
+              <tr style="background-color: #1b5e20; color: white;">
+                <th style="border: 1px solid #ddd; padding: 8px;">Concept</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Simple Meaning</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Matter</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Anything that has mass and takes space.</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Air, water, rock.</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Atom</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Smallest unit of matter.</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Hydrogen atom.</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Element</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">A pure substance with only one kind of atom.</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Gold (Au), Oxygen (O).</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Molecule</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Two or more atoms joined together.</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">H₂O (water).</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Compound</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">A substance made of different elements.</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Salt (NaCl).</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Mixture</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Combination of substances not chemically joined.</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Air, salad.</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Chemical Reaction</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">When substances change to form new ones.</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Burning wood → ash, smoke.</td>
+              </tr>
+            </tbody>
+          </table>
+          <h4>States of Matter</h4>
+          <ol>
+            <li>Solid – Fixed shape and volume (ice, rock).</li>
+            <li>Liquid – Fixed volume but takes container's shape (water, oil).</li>
+            <li>Gas – No fixed shape or volume (air, steam).</li>
+            <li>Plasma – Super-hot gas (sun, stars).</li>
+          </ol>
+          <h4>Simple Chemistry Facts</h4>
+          <ul>
+            <li>Water is made of 2 hydrogen atoms + 1 oxygen atom (H₂O).</li>
+            <li>Air is a mixture of gases (mostly nitrogen and oxygen).</li>
+            <li>Rust forms when iron reacts with oxygen and water.</li>
+            <li>Cooking is a chemical change.</li>
+          </ul>
+          <h4>Safety Rules in Chemistry</h4>
+          <ul>
+            <li>Always wear gloves, goggles, and apron.</li>
+            <li>Never taste or smell unknown chemicals.</li>
+            <li>Handle acids and bases carefully.</li>
+            <li>Wash hands after experiments.</li>
+          </ul>
+          <hr style="border: 1px solid #1b5e20; margin: 30px 0;">
+          <h3>Biology Basics for School Students</h3>
+          <p>Biology is the study of living things – plants, animals, humans, and microorganisms.</p>
+          <h4>Main Branches of Biology</h4>
+          <ol>
+            <li>Botany – Study of plants</li>
+            <li>Zoology – Study of animals</li>
+            <li>Microbiology – Study of tiny organisms (bacteria, fungi, viruses)</li>
+            <li>Human Biology – Study of the human body</li>
+          </ol>
+          <h4>Characteristics of Living Things (MRS GREN)</h4>
+          <ul>
+            <li>Movement – move in some way</li>
+            <li>Respiration – breathe/produce energy</li>
+            <li>Sensitivity – respond to surroundings</li>
+            <li>Growth – get bigger/mature</li>
+            <li>Reproduction – make new life</li>
+            <li>Excretion – remove waste</li>
+            <li>Nutrition – need food for energy</li>
+          </ul>
+          <h4>The Cell – Basic Unit of Life</h4>
+          <p>All living things are made of cells. Cells are like tiny building blocks.</p>
+          <p>Types:</p>
+          <ul>
+            <li>Plant cells (have cell wall and chloroplast for photosynthesis)</li>
+            <li>Animal cells (no cell wall, no chloroplast)</li>
+          </ul>
+          <h4>Plants vs Animals</h4>
+          <p>Plants: Make their own food by photosynthesis (using sunlight, water, carbon dioxide).</p>
+          <p>Animals: Cannot make their own food; depend on plants or other animals.</p>
+          <h4>Human Body Basics</h4>
+          <ul>
+            <li>Respiratory system – helps us breathe.</li>
+            <li>Digestive system – breaks food into energy.</li>
+            <li>Circulatory system – heart pumps blood.</li>
+            <li>Nervous system – brain controls actions.</li>
+            <li>Skeletal system – bones give shape and support.</li>
+          </ul>
+          <h4>Why is Biology Important?</h4>
+          <p>Helps us understand our body and health.</p>
+          <p>Helps farmers grow better crops.</p>
+          <p>Helps doctors find cures for diseases.</p>
+          <p>Explains nature, animals, and the environment.</p>
+          <h4>In short: Biology = Study of Life</h4>
+        `,
+        videos: `
+          <h3>YouTube Videos for Science Basics</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px;">
+            <div class="science-video-thumbnail" data-video-id="k6U-i4gXkLM">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/k6U-i4gXkLM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              <h4>Physics Basics</h4>
+            </div>
+            <div class="science-video-thumbnail" data-video-id="Hf4k6v6v7xk">
+              <img src="https://img.youtube.com/vi/Hf4k6v6v7xk/hqdefault.jpg" alt="Chemistry Basics" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+              <h4>Chemistry Basics</h4>
+            </div>
+            <div class="science-video-thumbnail" data-video-id="u7X9Q6v6v7xk">
+              <img src="https://img.youtube.com/vi/u7X9Q6v6v7xk/hqdefault.jpg" alt="Biology Basics" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+              <h4>Biology Basics</h4>
+            </div>
+          </div>
+          <div id="scienceVideoPlayerSection" style="display:none; text-align:center; margin-top: 20px;">
+            <iframe id="scienceVideoPlayer" width="640" height="360" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);"></iframe>
+            <div style="margin-top: 20px;">
+              <button id="scienceBackToThumbnailsBtn" class="btn outline">Back to Videos</button>
+            </div>
+          </div>
+        `
+      },
+      english: {
+        title: 'English Course',
+        notes: `
+          <h3>✏ English Basic Grammar Notes</h3>
+          <div class="english-notes-section">
+            <h4>1. Parts of Speech (Building blocks of sentences)</h4>
+            <ol>
+              <li>Noun – Name of a person, place, thing, or idea.<br>👉 Ram, school, book, love</li>
+              <li>Pronoun – Words used instead of nouns.<br>👉 he, she, it, they, we</li>
+              <li>Verb – Action or state of being.<br>👉 run, eat, is, are</li>
+              <li>Adjective – Words that describe nouns.<br>👉 tall boy, red car, sweet mango</li>
+              <li>Adverb – Words that describe verbs/adjectives.<br>👉 He runs quickly. She sings beautifully.</li>
+              <li>Preposition – Shows relationship between words.<br>👉 in, on, under, near, between</li>
+              <li>Conjunction – Joins words or sentences.<br>👉 and, but, or, because</li>
+              <li>Interjection – Words showing sudden feelings.<br>👉 Wow! Oh! Alas!</li>
+            </ol>
+            <hr style="border: 1px solid #1976d2; margin: 30px 0;">
+            <h4>2. Sentence Structure</h4>
+            <p>Subject – Who/what the sentence is about.</p>
+            <p>Predicate – What the subject does.</p>
+            <p>👉 Example: The cat (subject) is sleeping on the mat (predicate).</p>
+            <hr style="border: 1px solid #42a5f5; margin: 30px 0;">
+            <h4>3. Types of Sentences</h4>
+            <ol>
+              <li>Declarative – Statement → I am a student.</li>
+              <li>Interrogative – Question → Are you a student?</li>
+              <li>Imperative – Command/Request → Please sit down.</li>
+              <li>Exclamatory – Strong feeling → What a beautiful day!</li>
+            </ol>
+            <hr style="border: 1px solid #42a5f5; margin: 30px 0;">
+            <h4>4. Tenses (Time of action)</h4>
+            <ol>
+              <li>Present – I eat an apple.</li>
+              <li>Past – I ate an apple.</li>
+              <li>Future – I will eat an apple.</li>
+            </ol>
+            <hr style="border: 1px solid #1976d2; margin: 30px 0;">
+            <h4>5. Articles</h4>
+            <p>a, an → used with singular nouns.<br>👉 a book, an apple</p>
+            <p>the → used for specific things.<br>👉 the sun, the Taj Mahal</p>
+            <hr style="border: 1px solid #42a5f5; margin: 30px 0;">
+            <h4>6. Punctuation</h4>
+            <p>. (Full stop) – End of a sentence.</p>
+            <p>, (Comma) – Pause or separate items.</p>
+            <p>? (Question mark) – For questions.</p>
+            <p>! (Exclamation mark) – Strong feelings.</p>
+            <hr style="border: 1px solid #1976d2; margin: 30px 0;">
+            <h4>7. Common Grammar Rules</h4>
+            <ul>
+              <li>✔ A sentence always starts with a capital letter.</li>
+              <li>✔ Use is/are for present, was/were for past.</li>
+              <li>✔ Singular noun → verb with s/es (He plays).</li>
+              <li>✔ Plural noun → verb without s/es (They play).</li>
+            </ul>
+          </div>
+        `,
+        videos: `
+          <h3>English Grammar Videos</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px;">
+            <div class="english-video-thumbnail" data-video-id="hQAhjFkG6k">
+              <img src="https://img.youtube.com/vi/hQAhjFkG6k/hqdefault.jpg" alt="Parts of Speech" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+              <h4>Parts of Speech</h4>
+            </div>
+            <div class="english-video-thumbnail" data-video-id="dTWrO7dK7vE">
+              <img src="https://img.youtube.com/vi/dTWrO7dK7vE/hqdefault.jpg" alt="Tenses" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+              <h4>Tenses</h4>
+            </div>
+            <div class="english-video-thumbnail" data-video-id="7DTNYqm5P0U">
+              <img src="https://img.youtube.com/vi/7DTNYqm5P0U/hqdefault.jpg" alt="Sentence Structure" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+              <h4>Sentence Structure</h4>
+            </div>
+          </div>
+          <div id="englishVideoPlayerSection" style="display:none; text-align:center; margin-top: 20px;">
+            <iframe id="englishVideoPlayer" width="640" height="360" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);"></iframe>
+            <div style="margin-top: 20px;">
+              <button id="englishBackToThumbnailsBtn" class="btn outline">Back to Videos</button>
+            </div>
+          </div>
+        `
+      }
+    };
+
+    // Load course content
+    function loadCourseContent() {
+      if (course && courseContent[course]) {
+        const content = courseContent[course];
+        document.getElementById('courseContent').innerHTML = `
+          <h2 style="text-align: center; color: #333; margin-bottom: 40px;">${content.title}</h2>
+
+          <!-- Navigation Tabs -->
+          <div style="text-align: center; margin-bottom: 40px;">
+            <button id="notesTab" class="btn success" style="margin-right: 20px;">📖 Course Notes</button>
+            <button id="videosTab" class="btn outline">🎥 Video Lessons</button>
+          </div>
+
+          <!-- Notes Section -->
+          <div id="notesSection" style="background: rgba(255,255,255,0.95); padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin-bottom: 40px;">
+            ${content.notes}
+          </div>
+
+          <!-- Videos Section -->
+          <div id="videosSection" style="background: rgba(255,255,255,0.95); padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); display: none;">
+            ${content.videos}
+          </div>
+        `;
+
+        // Tab switching functionality
+        document.getElementById('notesTab').addEventListener('click', function() {
+          document.getElementById('notesSection').style.display = 'block';
+          document.getElementById('videosSection').style.display = 'none';
+          this.className = 'btn success';
+          document.getElementById('videosTab').className = 'btn outline';
+        });
+
+        document.getElementById('videosTab').addEventListener('click', function() {
+          document.getElementById('notesSection').style.display = 'none';
+          document.getElementById('videosSection').style.display = 'block';
+          this.className = 'btn success';
+          document.getElementById('notesTab').className = 'btn outline';
+        });
+
+        // Video thumbnail click handlers
+        document.querySelectorAll('.video-thumbnail, .science-video-thumbnail, .english-video-thumbnail').forEach(thumbnail => {
+          thumbnail.addEventListener('click', function() {
+            const videoId = this.getAttribute('data-video-id');
+            if (videoId) {
+              const playerSection = document.getElementById('videoPlayerSection') || document.getElementById('scienceVideoPlayerSection') || document.getElementById('englishVideoPlayerSection');
+              const player = document.getElementById('videoPlayer') || document.getElementById('scienceVideoPlayer') || document.getElementById('englishVideoPlayer');
+
+              if (playerSection && player) {
+                player.src = `https://www.youtube.com/embed/${videoId}`;
+                playerSection.style.display = 'block';
+                document.querySelectorAll('.video-thumbnail, .science-video-thumbnail, .english-video-thumbnail').forEach(t => t.style.display = 'none');
+              }
+            }
+          });
+        });
+
+        // Back to thumbnails buttons
+        ['backToThumbnailsBtn', 'scienceBackToThumbnailsBtn', 'englishBackToThumbnailsBtn'].forEach(btnId => {
+          const btn = document.getElementById(btnId);
+          if (btn) {
+            btn.addEventListener('click', function() {
+              const playerSection = document.getElementById('videoPlayerSection') || document.getElementById('scienceVideoPlayerSection') || document.getElementById('englishVideoPlayerSection');
+              const player = document.getElementById('videoPlayer') || document.getElementById('scienceVideoPlayer') || document.getElementById('englishVideoPlayer');
+
+              if (playerSection && player) {
+                playerSection.style.display = 'none';
+                player.src = '';
+                document.querySelectorAll('.video-thumbnail, .science-video-thumbnail, .english-video-thumbnail').forEach(t => t.style.display = 'block');
+              }
+            });
+          }
+        });
+      } else {
+        document.getElementById('courseContent').innerHTML = `
+          <div style="text-align: center; padding: 100px;">
+            <h2>Course Not Found</h2>
+            <p>Please go back to the home page and select a valid course.</p>
+            <a href="index.html" class="btn success" style="margin-top: 20px;">Go to Home</a>
+          </div>
+        `;
+      }
+    }
+
+    // Load content when page loads
+    loadCourseContent();
+  </script>
+  
+  <!-- API Client -->
+  <script src="/api-client.js"></script>
+  
+  <!-- Enhanced Course Loading Script -->
+  <script>
+    async function loadCoursesFromAPI() {
+      try {
+        const courses = await apiClient.getCourses();
+        const courseContent = document.getElementById('courseContent');
+        
+        if (courses.length === 0) {
+          courseContent.innerHTML = `
+            <div style="text-align: center; padding: 100px;">
+              <h2>No courses available yet</h2>
+              <p>Courses will be added soon. Check back later!</p>
+            </div>
+          `;
+          return;
+        }
+        
+        courseContent.innerHTML = `
+          <div style="text-align: center; margin-bottom: 50px;">
+            <h1 style="color: #2d3748; margin-bottom: 20px;">Available Courses</h1>
+            <p style="color: #718096; font-size: 1.2rem;">Choose a subject to start learning</p>
+          </div>
+          
+          <div class="course-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-bottom: 50px;">
+            ${courses.map(course => `
+              <div class="course-card" style="background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease; cursor: pointer;" onclick="loadCourseDetails('${course._id}')">
+                <h3 style="color: #2d3748; margin-bottom: 15px; font-size: 1.5rem;">${course.title}</h3>
+                <p style="color: #718096; margin-bottom: 20px; line-height: 1.6;">${course.description}</p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                  <span style="background: #667eea; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; text-transform: capitalize;">${course.subject}</span>
+                  <span style="color: #4a5568; font-size: 0.9rem; text-transform: capitalize;">${course.difficulty}</span>
+                </div>
+                <button style="width: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px; border-radius: 8px; font-size: 1rem; cursor: pointer;">Start Learning</button>
+              </div>
+            `).join('')}
+          </div>
+          
+          <div style="text-align: center;">
+            <h2 style="color: #2d3748; margin-bottom: 30px;">Quick Access</h2>
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+              <button onclick="loadSubjectCourses('math')" style="background: #48bb78; color: white; border: none; padding: 15px 30px; border-radius: 25px; font-size: 1rem; cursor: pointer;">📊 Math Courses</button>
+              <button onclick="loadSubjectCourses('science')" style="background: #ed8936; color: white; border: none; padding: 15px 30px; border-radius: 25px; font-size: 1rem; cursor: pointer;">🔬 Science Courses</button>
+              <button onclick="loadSubjectCourses('english')" style="background: #9f7aea; color: white; border: none; padding: 15px 30px; border-radius: 25px; font-size: 1rem; cursor: pointer;">📚 English Courses</button>
+            </div>
+          </div>
+        `;
+        
+      } catch (error) {
+        console.error('Error loading courses:', error);
+        document.getElementById('courseContent').innerHTML = `
+          <div style="text-align: center; padding: 100px;">
+            <h2>Unable to load courses</h2>
+            <p>Please check your connection and try again.</p>
+            <button onclick="loadCoursesFromAPI()" style="background: #667eea; color: white; border: none; padding: 10px 20px; border-radius: 5px; margin-top: 20px; cursor: pointer;">Retry</button>
+          </div>
+        `;
+      }
+    }
+    
+    async function loadSubjectCourses(subject) {
+      try {
+        const courses = await apiClient.getCoursesBySubject(subject);
+        const courseContent = document.getElementById('courseContent');
+        
+        courseContent.innerHTML = `
+          <div style="text-align: center; margin-bottom: 50px;">
+            <h1 style="color: #2d3748; margin-bottom: 20px; text-transform: capitalize;">${subject} Courses</h1>
+            <button onclick="loadCoursesFromAPI()" style="background: #718096; color: white; border: none; padding: 10px 20px; border-radius: 5px; margin-bottom: 20px; cursor: pointer;">← Back to All Courses</button>
+          </div>
+          
+          <div class="course-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+            ${courses.map(course => `
+              <div class="course-card" style="background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                <h3 style="color: #2d3748; margin-bottom: 15px;">${course.title}</h3>
+                <p style="color: #718096; margin-bottom: 20px;">${course.description}</p>
+                <button onclick="loadCourseDetails('${course._id}')" style="width: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer;">Start Learning</button>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        
+      } catch (error) {
+        console.error('Error loading subject courses:', error);
+      }
+    }
+    
+    function loadCourseDetails(courseId) {
+      // Store selected course and redirect to appropriate page
+      localStorage.setItem('selectedCourse', courseId);
+      // For now, redirect to subject-specific pages
+      // This could be enhanced to dynamically load course content
+      window.location.href = '/science-videos.html';
+    }
+    
+    // Load courses when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if user is logged in
+      const user = localStorage.getItem('user');
+      if (!user) {
+        document.getElementById('courseContent').innerHTML = `
+          <div style="text-align: center; padding: 100px;">
+            <h2>Please sign in to access courses</h2>
+            <p>You need to be logged in to view course content.</p>
+            <a href="/signin.html" style="background: #667eea; color: white; padding: 15px 30px; border-radius: 25px; text-decoration: none; display: inline-block; margin-top: 20px;">Sign In</a>
+          </div>
+        `;
+        return;
+      }
+      
+      loadCoursesFromAPI();
+    });
+  </script>
+</body>
+</html>

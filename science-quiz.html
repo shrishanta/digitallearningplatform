@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Science Quiz - Digital Learning Nabha</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">Digital Learning Nabha</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="create-profile.html">Sign Up</a>
+      <a href="signin.html">Sign In</a>
+    </nav>
+  </header>
+
+  <section class="hero" style="justify-content: center; text-align: center; padding: 40px 10%;">
+    <div class="hero-text" style="max-width: 800px;">
+      <h1>Science Quiz</h1>
+      <p>Test your knowledge of Physics, Chemistry, and Biology. Answer the questions below.</p>
+      <div id="timer" style="font-size: 1.2em; font-weight: bold; color: #e53e3e; margin-bottom: 20px;">Time Remaining: 15:00</div>
+      <div id="quizContainer">
+        <div id="quizQuestions"></div>
+        <div style="margin-top: 20px;">
+          <button id="submitQuizBtn" class="btn primary">Submit Quiz</button>
+        </div>
+        <div id="quizResult" style="margin-top: 20px; font-weight: bold;"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2023 Digital Learning Nabha. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const scienceQuizQuestions = [
+      {
+        question: "The chemical formula of common salt is:",
+        options: ["NaCl", "KCl", "NaOH", "HCl"],
+        answer: 0
+      },
+      {
+        question: "The gas used in photosynthesis is:",
+        options: ["Oxygen", "Carbon dioxide", "Nitrogen", "Hydrogen"],
+        answer: 1
+      },
+      {
+        question: "The unit of force is:",
+        options: ["Watt", "Joule", "Newton", "Pascal"],
+        answer: 2
+      },
+      {
+        question: "The powerhouse of the cell is:",
+        options: ["Nucleus", "Ribosome", "Mitochondria", "Chloroplast"],
+        answer: 2
+      },
+      {
+        question: "Plants prepare their food by:",
+        options: ["Respiration", "Photosynthesis", "Transpiration", "Digestion"],
+        answer: 1
+      },
+      {
+        question: "Which planet is known as the \"Red Planet\"?",
+        options: ["Venus", "Mars", "Jupiter", "Saturn"],
+        answer: 1
+      },
+      {
+        question: "The hardest natural substance on Earth is:",
+        options: ["Iron", "Diamond", "Graphite", "Quartz"],
+        answer: 1
+      },
+      {
+        question: "When magnesium ribbon is burnt in air, it produces a white powder. This powder is:",
+        options: ["Magnesium chloride (MgCl₂)", "Magnesium oxide (MgO)", "Magnesium sulphate (MgSO₄)", "Magnesium carbonate (MgCO₃)"],
+        answer: 1
+      },
+      {
+        question: "A farmer observed that the leaves of his plants are turning yellow due to lack of chlorophyll. This condition is caused mainly by the deficiency of:",
+        options: ["Nitrogen", "Potassium", "Calcium", "Phosphorus"],
+        answer: 0
+      },
+      {
+        question: "Which gas is released when dilute hydrochloric acid reacts with zinc?",
+        options: ["Oxygen", "Hydrogen", "Carbon dioxide", "Nitrogen"],
+        answer: 1
+      }
+    ];
+
+    let currentScienceQuestion = 0;
+    let scienceScore = 0;
+    let userAnswers = [];
+    let timeLeft = 15 * 60; // 15 minutes in seconds
+    let timerInterval;
+
+    const quizQuestionsDiv = document.getElementById('quizQuestions');
+    const submitQuizBtn = document.getElementById('submitQuizBtn');
+    const quizResultDiv = document.getElementById('quizResult');
+    const timerDiv = document.getElementById('timer');
+
+    function updateTimer() {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      timerDiv.textContent = `Time Remaining: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        alert('Time is up! The quiz will be submitted automatically.');
+        submitQuiz();
+      }
+      timeLeft--;
+    }
+
+    function startTimer() {
+      updateTimer();
+      timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    function showScienceQuestion(index) {
+      if (index >= scienceQuizQuestions.length) {
+        clearInterval(timerInterval);
+        showResults();
+        return;
+      }
+      const q = scienceQuizQuestions[index];
+      quizQuestionsDiv.innerHTML = `
+        <div class="quiz-question">
+          <p>${q.question}</p>
+          ${q.options.map((opt, i) => `<button class="quiz-option" data-index="${i}">${opt}</button>`).join('')}
+        </div>
+      `;
+      document.querySelectorAll('.quiz-option').forEach(btn => {
+        btn.onclick = function() {
+          const selectedIndex = parseInt(btn.dataset.index);
+          userAnswers[index] = selectedIndex;
+          if (selectedIndex === q.answer) {
+            scienceScore++;
+            btn.style.background = "#4caf50";
+          } else {
+            btn.style.background = "#f44336";
+          }
+          setTimeout(() => {
+            currentScienceQuestion++;
+            showScienceQuestion(currentScienceQuestion);
+          }, 700);
+        };
+      });
+    }
+
+    function showResults() {
+      quizQuestionsDiv.innerHTML = '';
+      submitQuizBtn.style.display = 'none';
+      quizResultDiv.innerHTML = `
+        <h3>Your Score: ${scienceScore} / ${scienceQuizQuestions.length}</h3>
+        <p>Great job! You've completed the Science Quiz.</p>
+        <button onclick="location.href='index.html'" class="btn success">Back to Home</button>
+      `;
+    }
+
+    function submitQuiz() {
+      clearInterval(timerInterval);
+      // Force finish the quiz
+      currentScienceQuestion = scienceQuizQuestions.length;
+      showScienceQuestion(currentScienceQuestion);
+    }
+
+    submitQuizBtn.addEventListener('click', function() {
+      submitQuiz();
+    });
+
+    // Start the quiz and timer
+    showScienceQuestion(currentScienceQuestion);
+    startTimer();
+  </script>
+</body>
+</html>

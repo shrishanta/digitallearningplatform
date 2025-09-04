@@ -1,0 +1,149 @@
+take quiz <option value=""></option><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Grammar Quiz - Digital Learning Nabha</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">Digital Learning Nabha</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="create-profile.html">Sign Up</a>
+      <a href="signin.html">Sign In</a>
+    </nav>
+  </header>
+
+  <section class="hero" style="justify-content: center; text-align: center; padding: 40px 10%;">
+    <div class="hero-text" style="max-width: 800px;">
+      <h1>English Grammar Quiz</h1>
+      <p>Test your knowledge of English grammar and language skills. Answer the questions below.</p>
+      <div id="quizContainer">
+        <div id="quizQuestions"></div>
+        <div style="margin-top: 20px;">
+          <button id="submitQuizBtn" class="btn primary">Submit Quiz</button>
+        </div>
+        <div id="quizResult" style="margin-top: 20px; font-weight: bold;"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2023 Digital Learning Nabha. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const englishQuizQuestions = [
+      {
+        question: "Which of the following is a noun?",
+        options: ["Run", "Beautiful", "Book", "Quickly"],
+        answer: 2
+      },
+      {
+        question: "What is the correct past tense of 'go'?",
+        options: ["Goes", "Going", "Went", "Gone"],
+        answer: 2
+      },
+      {
+        question: "Which word is a pronoun?",
+        options: ["Table", "She", "Run", "Beautiful"],
+        answer: 1
+      },
+      {
+        question: "Choose the correct article: ___ apple",
+        options: ["A", "An", "The", "No article"],
+        answer: 0
+      },
+      {
+        question: "What type of sentence is: 'What a beautiful day!'",
+        options: ["Declarative", "Interrogative", "Imperative", "Exclamatory"],
+        answer: 3
+      },
+      {
+        question: "Which of these is an adverb?",
+        options: ["Tall", "Quickly", "Table", "She"],
+        answer: 1
+      },
+      {
+        question: "Choose the correct preposition: The book is ___ the table.",
+        options: ["In", "On", "At", "With"],
+        answer: 1
+      },
+      {
+        question: "What is the plural of 'child'?",
+        options: ["Childs", "Children", "Childes", "Childrens"],
+        answer: 1
+      },
+      {
+        question: "Which sentence is grammatically correct?",
+        options: ["He go to school.", "He goes to school.", "He going to school.", "He goed to school."],
+        answer: 1
+      },
+      {
+        question: "What punctuation mark is used at the end of a question?",
+        options: [".", ",", "!", "?"],
+        answer: 3
+      }
+    ];
+
+    let currentEnglishQuestion = 0;
+    let englishScore = 0;
+    let userAnswers = [];
+
+    const quizQuestionsDiv = document.getElementById('quizQuestions');
+    const submitQuizBtn = document.getElementById('submitQuizBtn');
+    const quizResultDiv = document.getElementById('quizResult');
+
+    function showEnglishQuestion(index) {
+      if (index >= englishQuizQuestions.length) {
+        showResults();
+        return;
+      }
+      const q = englishQuizQuestions[index];
+      quizQuestionsDiv.innerHTML = `
+        <div class="quiz-question">
+          <p>${q.question}</p>
+          ${q.options.map((opt, i) => `<button class="quiz-option" data-index="${i}">${opt}</button>`).join('')}
+        </div>
+      `;
+      document.querySelectorAll('.quiz-option').forEach(btn => {
+        btn.onclick = function() {
+          const selectedIndex = parseInt(btn.dataset.index);
+          userAnswers[index] = selectedIndex;
+          if (selectedIndex === q.answer) {
+            englishScore++;
+            btn.style.background = "#4caf50";
+          } else {
+            btn.style.background = "#f44336";
+          }
+          setTimeout(() => {
+            currentEnglishQuestion++;
+            showEnglishQuestion(currentEnglishQuestion);
+          }, 700);
+        };
+      });
+    }
+
+    function showResults() {
+      quizQuestionsDiv.innerHTML = '';
+      submitQuizBtn.style.display = 'none';
+      quizResultDiv.innerHTML = `
+        <h3>Your Score: ${englishScore} / ${englishQuizQuestions.length}</h3>
+        <p>Great job! You've completed the English Grammar Quiz.</p>
+        <button onclick="location.href='index.html'" class="btn success">Back to Home</button>
+      `;
+    }
+
+    submitQuizBtn.addEventListener('click', function() {
+      // Force finish the quiz
+      currentEnglishQuestion = englishQuizQuestions.length;
+      showEnglishQuestion(currentEnglishQuestion);
+    });
+
+    // Start the quiz
+    showEnglishQuestion(currentEnglishQuestion);
+  </script>
+</body>
+</html>

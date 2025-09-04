@@ -1,0 +1,395 @@
++<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>General Knowledge Quiz - Digital Learning Nabha</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">Digital Learning Nabha</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="create-profile.html">Sign Up</a>
+      <a href="signin.html">Sign In</a>
+    </nav>
+  </header>
+
+  <section class="hero" style="justify-content: center; text-align: center; padding: 40px 10%;">
+    <div class="hero-text" style="max-width: 800px;">
+      <h1>General Knowledge Quiz</h1>
+      <p>Test your knowledge across Mathematics, Science, and English. Answer the questions below.</p>
+      <div id="quizContainer">
+        <div id="quizQuestions"></div>
+        <div style="margin-top: 20px;">
+          <button id="submitQuizBtn" class="btn primary">Submit Quiz</button>
+        </div>
+        <div id="quizResult" style="margin-top: 20px; font-weight: bold;"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Digital Learning Nabha. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const quizQuestions = [
+      {
+        question: "Q1. The unit of force is:",
+        options: ["Watt", "Joule", "Newton", "Pascal"],
+        answer: 2
+      },
+      {
+        question: "Q2. Which of the following is a noun?",
+        options: ["Run", "Happy", "Dog", "Quickly"],
+        answer: 2
+      },
+      {
+        question: "Q3. A farmer borrows ₹20,000 at 10% simple interest per year. What will he pay after 2 years?",
+        options: ["₹22,000", "₹24,000", "₹26,000", "₹28,000"],
+        answer: 1
+      },
+      {
+        question: "Q4. The powerhouse of the cell is:",
+        options: ["Nucleus", "Ribosome", "Mitochondria", "Chloroplast"],
+        answer: 2
+      },
+      {
+        question: "Q5. What is the opposite of the word 'big'?",
+        options: ["Large", "Small", "Happy", "Sad"],
+        answer: 1
+      },
+      {
+        question: "Q6. The sum of the angles of a triangle is:",
+        options: ["90°", "180°", "270°", "360°"],
+        answer: 1
+      },
+      {
+        question: "Q7. Plants prepare their food by:",
+        options: ["Respiration", "Photosynthesis", "Transpiration", "Digestion"],
+        answer: 1
+      },
+      {
+        question: "Q8. The plural form of the word 'tooth' is:",
+        options: ["Tooth", "Teeth", "Toothes", "Tooths"],
+        answer: 1
+      },
+      {
+        question: "Q9. A cow gives 5 litres of milk daily. How much milk will it give in 7 days?",
+        options: ["25 litres", "30 litres", "35 litres", "40 litres"],
+        answer: 2
+      },
+      {
+        question: "Q10. Which gas is used in photosynthesis?",
+        options: ["Oxygen", "Carbon dioxide", "Nitrogen", "Hydrogen"],
+        answer: 1
+      },
+      {
+        question: "Q11. Which of the following is an adverb?",
+        options: ["Happy", "Quickly", "Dog", "Run"],
+        answer: 1
+      },
+      {
+        question: "Q12. The hardest natural substance on Earth is:",
+        options: ["Iron", "Diamond", "Graphite", "Quartz"],
+        answer: 1
+      },
+      {
+        question: "Q13. The diagonals of a rectangle:",
+        options: ["Are unequal", "Are equal", "Bisect each other at right angles", "Do not bisect each other"],
+        answer: 1
+      },
+      {
+        question: "Q14. A bag of rice costs ₹1,200. What is the cost of 5 such bags?",
+        options: ["₹4,800", "₹5,200", "₹6,000", "₹6,200"],
+        answer: 2
+      },
+      {
+        question: "Q15. What is the past tense of the verb 'go'?",
+        options: ["Go", "Goes", "Went", "Going"],
+        answer: 2
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    const quizQuestionsDiv = document.getElementById('quizQuestions');
+    const submitQuizBtn = document.getElementById('submitQuizBtn');
+    const quizResultDiv = document.getElementById('quizResult');
+
+    function showQuestion(index) {
+      if (index >= quizQuestions.length) {
+        showResults();
+        return;
+      }
+      const q = quizQuestions[index];
+      quizQuestionsDiv.innerHTML = `
+        <div class="quiz-question">
+          <p>${q.question}</p>
+          ${q.options.map((opt, i) => `<button class="quiz-option" data-index="${i}">${opt}</button>`).join('')}
+        </div>
+      `;
+      document.querySelectorAll('.quiz-option').forEach(btn => {
+        btn.onclick = function() {
+          if (parseInt(btn.dataset.index) === q.answer) {
+            score++;
+            btn.style.background = "#4caf50";
+          } else {
+            btn.style.background = "#f44336";
+          }
+          setTimeout(() => {
+            currentQuestion++;
+            showQuestion(currentQuestion);
+          }, 700);
+        };
+      });
+    }
+
+    function showResults() {
+      quizQuestionsDiv.innerHTML = '';
+      submitQuizBtn.style.display = 'none';
+      quizResultDiv.innerHTML = `
+        <h3>Your Score: ${score} / ${quizQuestions.length}</h3>
+        <p>Great job! You've completed the General Knowledge Quiz.</p>
+        <button onclick="location.href='index.html'" class="btn success">Back to Home</button>
+      `;
+    }
+
+    submitQuizBtn.addEventListener('click', function() {
+      // Force finish the quiz
+      currentQuestion = quizQuestions.length;
+      showQuestion(currentQuestion);
+    });
+
+    // Start the quiz
+    showQuestion(currentQuestion);
+  </script>
+  
+  <!-- API Client -->
+  <script src="/api-client.js"></script>
+  
+  <!-- Enhanced Quiz Script -->
+  <script>
+    let currentQuiz = null;
+    let startTime = null;
+    
+    async function loadQuizzesFromAPI() {
+      try {
+        const quizzes = await apiClient.getQuizzes();
+        const quizContainer = document.getElementById('quizContainer');
+        
+        if (quizzes.length === 0) {
+          quizContainer.innerHTML = `
+            <div style="text-align: center; padding: 50px;">
+              <h2>No quizzes available yet</h2>
+              <p>Quizzes will be added soon. Check back later!</p>
+            </div>
+          `;
+          return;
+        }
+        
+        quizContainer.innerHTML = `
+          <div style="margin-bottom: 30px;">
+            <h2>Available Quizzes</h2>
+            <p>Select a quiz to start testing your knowledge</p>
+          </div>
+          
+          <div class="quiz-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px;">
+            ${quizzes.map(quiz => `
+              <div class="quiz-card" style="background: white; border-radius: 10px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); cursor: pointer;" onclick="startQuiz('${quiz._id}')">
+                <h3 style="color: #2d3748; margin-bottom: 10px;">${quiz.title}</h3>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                  <span style="background: #667eea; color: white; padding: 3px 10px; border-radius: 15px; font-size: 0.8rem; text-transform: capitalize;">${quiz.subject}</span>
+                  <span style="color: #718096; font-size: 0.9rem;">${quiz.questions.length} questions</span>
+                </div>
+                <div style="margin-bottom: 15px;">
+                  <span style="color: #718096; font-size: 0.9rem;">Time: ${quiz.timeLimit} minutes</span>
+                  <span style="color: #718096; font-size: 0.9rem; margin-left: 15px; text-transform: capitalize;">Level: ${quiz.difficulty}</span>
+                </div>
+                <button style="width: 100%; background: #48bb78; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer;">Start Quiz</button>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        
+      } catch (error) {
+        console.error('Error loading quizzes:', error);
+        document.getElementById('quizContainer').innerHTML = `
+          <div style="text-align: center; padding: 50px;">
+            <h2>Unable to load quizzes</h2>
+            <p>Please check your connection and try again.</p>
+            <button onclick="loadQuizzesFromAPI()" style="background: #667eea; color: white; border: none; padding: 10px 20px; border-radius: 5px; margin-top: 20px; cursor: pointer;">Retry</button>
+          </div>
+        `;
+      }
+    }
+    
+    async function startQuiz(quizId) {
+      try {
+        currentQuiz = await apiClient.getQuizById(quizId);
+        startTime = Date.now();
+        
+        const quizContainer = document.getElementById('quizContainer');
+        quizContainer.innerHTML = `
+          <div style="margin-bottom: 30px; text-align: left;">
+            <h2>${currentQuiz.title}</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+              <span>Question <span id="currentQuestionNum">1</span> of ${currentQuiz.questions.length}</span>
+              <span id="timeRemaining">Time: ${currentQuiz.timeLimit}:00</span>
+            </div>
+          </div>
+          
+          <div id="questionContainer" style="background: white; border-radius: 10px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 20px;">
+            <!-- Questions will be loaded here -->
+          </div>
+          
+          <div style="text-align: center;">
+            <button id="prevBtn" onclick="previousQuestion()" style="background: #718096; color: white; border: none; padding: 10px 20px; border-radius: 5px; margin-right: 10px; cursor: pointer;" disabled>Previous</button>
+            <button id="nextBtn" onclick="nextQuestion()" style="background: #667eea; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Next</button>
+            <button id="submitBtn" onclick="submitQuiz()" style="background: #48bb78; color: white; border: none; padding: 10px 20px; border-radius: 5px; margin-left: 10px; cursor: pointer; display: none;">Submit Quiz</button>
+          </div>
+        `;
+        
+        // Initialize quiz state
+        window.currentQuestionIndex = 0;
+        window.userAnswers = new Array(currentQuiz.questions.length).fill(null);
+        
+        // Start timer
+        startTimer();
+        
+        // Show first question
+        showCurrentQuestion();
+        
+      } catch (error) {
+        console.error('Error starting quiz:', error);
+        alert('Failed to start quiz. Please try again.');
+      }
+    }
+    
+    function showCurrentQuestion() {
+      const question = currentQuiz.questions[window.currentQuestionIndex];
+      const questionContainer = document.getElementById('questionContainer');
+      
+      questionContainer.innerHTML = `
+        <h3 style="margin-bottom: 20px; color: #2d3748;">${question.question}</h3>
+        <div class="options">
+          ${question.options.map((option, index) => `
+            <label style="display: block; margin-bottom: 15px; cursor: pointer; padding: 10px; border: 2px solid #e2e8f0; border-radius: 5px; transition: all 0.3s;" onclick="selectAnswer(${index})">
+              <input type="radio" name="answer" value="${index}" style="margin-right: 10px;" ${window.userAnswers[window.currentQuestionIndex] === index ? 'checked' : ''}>
+              ${option}
+            </label>
+          `).join('')}
+        </div>
+      `;
+      
+      // Update question counter
+      document.getElementById('currentQuestionNum').textContent = window.currentQuestionIndex + 1;
+      
+      // Update navigation buttons
+      document.getElementById('prevBtn').disabled = window.currentQuestionIndex === 0;
+      document.getElementById('nextBtn').style.display = window.currentQuestionIndex === currentQuiz.questions.length - 1 ? 'none' : 'inline-block';
+      document.getElementById('submitBtn').style.display = window.currentQuestionIndex === currentQuiz.questions.length - 1 ? 'inline-block' : 'none';
+    }
+    
+    function selectAnswer(answerIndex) {
+      window.userAnswers[window.currentQuestionIndex] = answerIndex;
+      
+      // Update visual feedback
+      const labels = document.querySelectorAll('label');
+      labels.forEach((label, index) => {
+        if (index === answerIndex) {
+          label.style.borderColor = '#667eea';
+          label.style.backgroundColor = '#f7fafc';
+        } else {
+          label.style.borderColor = '#e2e8f0';
+          label.style.backgroundColor = 'white';
+        }
+      });
+    }
+    
+    function nextQuestion() {
+      if (window.currentQuestionIndex < currentQuiz.questions.length - 1) {
+        window.currentQuestionIndex++;
+        showCurrentQuestion();
+      }
+    }
+    
+    function previousQuestion() {
+      if (window.currentQuestionIndex > 0) {
+        window.currentQuestionIndex--;
+        showCurrentQuestion();
+      }
+    }
+    
+    async function submitQuiz() {
+      try {
+        const timeTaken = Math.floor((Date.now() - startTime) / 1000);
+        
+        const result = await apiClient.submitQuizAttempt(currentQuiz._id, window.userAnswers, timeTaken);
+        
+        // Show results
+        const quizContainer = document.getElementById('quizContainer');
+        quizContainer.innerHTML = `
+          <div style="text-align: center; background: white; border-radius: 10px; padding: 40px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            <h2 style="color: #2d3748; margin-bottom: 20px;">Quiz Completed!</h2>
+            <div style="font-size: 3rem; margin-bottom: 20px;">${result.score >= 70 ? '🎉' : result.score >= 50 ? '👍' : '📚'}</div>
+            <div style="font-size: 2rem; color: ${result.score >= 70 ? '#48bb78' : result.score >= 50 ? '#ed8936' : '#e53e3e'}; margin-bottom: 20px;">
+              ${result.score}%
+            </div>
+            <p style="margin-bottom: 10px;">You got ${result.correctAnswers} out of ${result.totalQuestions} questions correct</p>
+            <p style="margin-bottom: 30px;">Time taken: ${Math.floor(result.timeTaken / 60)}:${(result.timeTaken % 60).toString().padStart(2, '0')}</p>
+            <div>
+              <button onclick="loadQuizzesFromAPI()" style="background: #667eea; color: white; border: none; padding: 15px 30px; border-radius: 25px; margin-right: 10px; cursor: pointer;">Take Another Quiz</button>
+              <button onclick="window.location.href='/course.html'" style="background: #48bb78; color: white; border: none; padding: 15px 30px; border-radius: 25px; cursor: pointer;">Back to Courses</button>
+            </div>
+          </div>
+        `;
+        
+      } catch (error) {
+        console.error('Error submitting quiz:', error);
+        alert('Failed to submit quiz. Please try again.');
+      }
+    }
+    
+    function startTimer() {
+      const timeLimit = currentQuiz.timeLimit * 60; // Convert to seconds
+      let timeLeft = timeLimit;
+      
+      const timer = setInterval(() => {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        
+        document.getElementById('timeRemaining').textContent = 
+          `Time: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+        
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          submitQuiz();
+        }
+        
+        timeLeft--;
+      }, 1000);
+    }
+    
+    // Load quizzes when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if user is logged in
+      const user = localStorage.getItem('user');
+      if (!user) {
+        document.getElementById('quizContainer').innerHTML = `
+          <div style="text-align: center; padding: 50px;">
+            <h2>Please sign in to take quizzes</h2>
+            <p>You need to be logged in to access quiz content.</p>
+            <a href="/signin.html" style="background: #667eea; color: white; padding: 15px 30px; border-radius: 25px; text-decoration: none; display: inline-block; margin-top: 20px;">Sign In</a>
+          </div>
+        `;
+        return;
+      }
+      
+      loadQuizzesFromAPI();
+    });
+  </script>
+</body>
+</html>
